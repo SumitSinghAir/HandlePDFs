@@ -7,11 +7,12 @@ from datetime import datetime
 
 try:
     while True:
-        a = input('What do you want to do:')
+        a = input('Enter mergepdf to merge pdf and imgtopdf to convert images to pdf: ')
 
-        if a == 'pdfmerge':
+        if a == 'mergepdf':
+            b=int(input('Enter 0 for ascending order of files, 1 for descending order of files: '))
             pdfiles = glob.glob("rawfiles/*.pdf")
-            pdfiles.sort()
+            pdfiles.sort(reverse=bool(b))
             merger = PyPDF2.PdfMerger()
             for filename in pdfiles:
                 with open(filename, 'rb') as pdfFile:
@@ -23,8 +24,9 @@ try:
                 merger.write(mergedFile)
 
         elif a == 'imgtopdf':
+            b=int(input('Enter 0 for ascending order of files, 1 for descending order of files: '))
             imgfiles = glob.glob("rawfiles/*.jpg")+ glob.glob("rawfiles/*.png") + glob.glob("rawfiles/*.gif")
-            imgfiles.sort()
+            imgfiles.sort(reverse=bool(b))
             merger = PyPDF2.PdfMerger()
             i = 0
             for filename in imgfiles:
