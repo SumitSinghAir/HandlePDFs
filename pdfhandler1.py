@@ -49,6 +49,9 @@ try:
                 os.remove(temp_file)
         
         elif a=='q' or a=='Q':
+            raw_files = glob.glob("rawfiles/*")
+            for raw_file in raw_files:
+                os.remove(raw_file)
             break
 
 except Exception as e:
